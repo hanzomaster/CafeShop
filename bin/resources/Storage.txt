@@ -1,0 +1,4 @@
+Loại	Khối lượng(kg)
+Hạt Robusta	5
+Hạt Arabica	10
+Hạt Culi	7

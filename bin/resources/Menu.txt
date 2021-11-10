@@ -1,0 +1,10 @@
+Tên	Giá(vnd)	Loại
+Capuchino	30000	Cà phê
+Đen đá	15000	Cà phê
+Bạc xỉu	20000	Cà phê
+Tê ra su dâu	10000	Tráng miệng
+Tê ra su đào	10000	Tráng miệng
+Trà thái	15000	Đồ uống
+Trà đào	10000	Đồ uống
+Matcha	12000	Đồ uống
+Sinh tố bơ	15000	Sinh tố
