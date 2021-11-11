@@ -1,4 +1,4 @@
 Loại	Khối lượng(kg)
-Hạt Robusta	5
-Hạt Arabica	10
-Hạt Culi	7
+Hạt Robusta	5kg
+Hạt Arabica	10kg
+Hạt Culi	7kg

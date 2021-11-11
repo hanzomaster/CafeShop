@@ -90,6 +90,7 @@ public class ScreenProperty implements Initializable {
       int set = i;
       tableAvail[i].setOnAction(e -> {
         tableAvail[set].setText("Occupied");
+        bill.setText("Hóa đơn bàn" + String.valueOf(set));
         menuView.getItems().addAll(MenuManagement.getStringList());
         menuView.getSelectionModel().selectedItemProperty()
             .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
@@ -127,21 +128,28 @@ public class ScreenProperty implements Initializable {
   }
 
   public void addButtonClicked() {
-    String bills = BillArea.getText();
+    String bills = "";
+    Revenue = 0;
     String food = DishesText.getText();
     String numberOfFood = numberofPiece.getText();
-    if (food != "" && numberOfFood != "" && numberOfFood != "0") {
+    // System.out.println(numberofPiece.getText().equals("0"));
+    if (food != "" && numberOfFood != "") {
       for (Fare f : MenuManagement.getFareList()) {
-        if (f.getName().equals(food) && (numberOfFood != "0")) {
-          f.setNumber(numberOfFood);
-          orderedFare.add(f);
-          for (Fare tmp : orderedFare) {
-            bills = bills + tmp.toString();
-            Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
+        if (f.getName().equals(food)) {
+          if (!numberOfFood.equals("0")) {
+            f.setNumber(numberOfFood);
+            orderedFare.add(f);
+          } else {
+            orderedFare.remove(f);
           }
         }
       }
     }
+    for (Fare tmp : orderedFare) {
+      bills = bills + tmp.toString();
+      Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
+    }
+
     sumLabel.setText(String.valueOf(Revenue));
     BillArea.setText(bills);
   }
