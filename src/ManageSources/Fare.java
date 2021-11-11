@@ -8,6 +8,13 @@ public class Fare {
   private String type;
   private int number;
 
+  /**
+   * Constructor khởi tạo món ăn.
+   * 
+   * @param name Tên món ăn
+   * @param price Giá
+   * @param type Loại đồ ăn
+   */
   public Fare(String name, int price, String type) {
     this.name = name;
     this.price = price;

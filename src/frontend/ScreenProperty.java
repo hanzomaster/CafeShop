@@ -1,14 +1,12 @@
 package frontend;
 
-
 import backend.MenuManagement;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import ManageSources.Fare;
-import ManageSources.Menu;
 import javafx.beans.value.ChangeListener;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,44 +14,76 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import ManageSources.Fare;
+import ManageSources.Menu;
 
 public class ScreenProperty implements Initializable {
-
-  public AnchorPane menuPane;
-  public TextArea observablTextArea;
-  public TextField DishesText;
-  public TextField numberofPiece;
-  public ListView<String> menuView;
-  public TextArea BillArea;
-  public Label dishes;
-  public Label number;
-  public Label bill;
-  public Label Sumtext;
-  public Label sumLabel;
-  public Button table1;
-  public Button table2;
-  public Button table3;
-  public Button table4;
-  public Button table5;
-  public Button table6;
-  public Button table7;
-  public Button table8;
-  public Button table9;
-  public Button table10;
-  public Button table11;
-  public Button table12;
-  public Button addButton;
-  public Button orderedButton;
-  public Button tableAvail[] = new Button[13];
+  @FXML
+  private AnchorPane menuPane;
+  @FXML
+  private TextArea observablTextArea;
+  @FXML
+  private TextField DishesText;
+  @FXML
+  private TextField numberofPiece;
+  @FXML
+  private ListView<String> menuView;
+  @FXML
+  private TextArea BillArea;
+  @FXML
+  private Label dishes;
+  @FXML
+  private Label number;
+  @FXML
+  private Label bill;
+  @FXML
+  private Label Sumtext;
+  @FXML
+  private Label sumLabel;
+  @FXML
+  private Button table1;
+  @FXML
+  private Button table2;
+  @FXML
+  private Button table3;
+  @FXML
+  private Button table4;
+  @FXML
+  private Button table5;
+  @FXML
+  private Button table6;
+  @FXML
+  private Button table7;
+  @FXML
+  private Button table8;
+  @FXML
+  private Button table9;
+  @FXML
+  private Button table10;
+  @FXML
+  private Button table11;
+  @FXML
+  private Button table12;
+  @FXML
+  private Button addButton;
+  @FXML
+  private Button orderedButton;
+  @FXML
+  public Button[] tableAvail = new Button[13];
+  @FXML
   public static Menu menu;
+  @FXML
   public static List<String> menuList = new ArrayList<>();
-  private int Revenue = 0;
+
+
+  private int revenue = 0;
   private List<Fare> orderedFare = new ArrayList<>();
 
-
+  /**
+   * Khởi tạo bàn ăn.
+   */
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
     tableAvail[1] = table1;
     tableAvail[2] = table2;
     tableAvail[3] = table3;
@@ -73,9 +103,7 @@ public class ScreenProperty implements Initializable {
 
     menuPane.setVisible(false);
     observablTextArea.setVisible(false);
-    MenuManagement.insertFood();
-
-
+    MenuManagement.insertFood(); // Tạo menu
   }
 
   public void staffManageClicked() {
@@ -83,6 +111,9 @@ public class ScreenProperty implements Initializable {
     menuPane.setVisible(false);
   }
 
+  /**
+   * Quản lí bàn ăn.
+   */
   public void TableManage() {
     menuPane.setVisible(true);
     for (int i = 1; i <= 12; i++) {
@@ -90,7 +121,7 @@ public class ScreenProperty implements Initializable {
       int set = i;
       tableAvail[i].setOnAction(e -> {
         tableAvail[set].setText("Occupied");
-        bill.setText("Hóa đơn bàn" + String.valueOf(set));
+        bill.setText("Hóa đơn bàn" + Integer.toString(set));
         menuView.getItems().addAll(MenuManagement.getStringList());
         menuView.getSelectionModel().selectedItemProperty()
             .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
@@ -127,13 +158,15 @@ public class ScreenProperty implements Initializable {
     sumLabel.setVisible(false);
   }
 
+  /**
+   * Thêm món ăn vào order.
+   */
   public void addButtonClicked() {
     String bills = "";
-    Revenue = 0;
+    revenue = 0;
     String food = DishesText.getText();
     String numberOfFood = numberofPiece.getText();
-    // System.out.println(numberofPiece.getText().equals("0"));
-    if (food != "" && numberOfFood != "") {
+    if (!food.equals("") && !numberOfFood.equals("")) {
       for (Fare f : MenuManagement.getFareList()) {
         if (f.getName().equals(food)) {
           if (!numberOfFood.equals("0")) {
@@ -147,11 +180,10 @@ public class ScreenProperty implements Initializable {
     }
     for (Fare tmp : orderedFare) {
       bills = bills + tmp.toString();
-      Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
+      revenue = revenue + tmp.getNumber() * tmp.getPrice();
     }
 
-    sumLabel.setText(String.valueOf(Revenue));
+    sumLabel.setText(String.valueOf(revenue));
     BillArea.setText(bills);
   }
 }
-

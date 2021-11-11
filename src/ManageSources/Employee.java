@@ -9,6 +9,13 @@ public class Employee {
   private int age;
   private Position position;
 
+  /**
+   * Constructor.
+   * 
+   * @param name Tên nhân viên
+   * @param age Tuổi nhân viên
+   * @param position Vị trí làm việc
+   */
   public Employee(String name, int age, Position position) {
     this.name = name;
     this.age = age;

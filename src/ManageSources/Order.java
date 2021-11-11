@@ -28,6 +28,9 @@ public class Order {
     orderList.add(order);
   }
 
+  /**
+   * Tổng giá của order.
+   */
   public int getTotalPrice() {
     int totalPrice = 0;
     for (Fare fare : orderList) {
