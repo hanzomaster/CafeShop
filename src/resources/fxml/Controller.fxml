@@ -10,56 +10,57 @@
 
 <AnchorPane prefHeight="520.0" prefWidth="825.0" style="-fx-background-color: #DDFAFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.ScreenProperty">
    <children>
-      <Button layoutX="25.0" layoutY="39.0" mnemonicParsing="false" onAction="#staffManageClicked" prefHeight="43.0" prefWidth="164.0" text="QUẢN LÍ NHÂN VIÊN">
+      <Button layoutX="25.0" layoutY="82.0" mnemonicParsing="false" onAction="#staffManageClicked" prefHeight="43.0" prefWidth="164.0" text="QUẢN LÍ NHÂN VIÊN">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
 
-      <Button layoutX="25.0" layoutY="99.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="164.0" text="MENU">
+      <Button layoutX="25.0" layoutY="143.0" mnemonicParsing="false" onAction="#menuManageClicked" prefHeight="43.0" prefWidth="164.0" text="MENU">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </Button>
-      <Button layoutX="25.0" layoutY="164.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="164.0" text="ORDER">
+      <Button layoutX="25.0" layoutY="205.0" mnemonicParsing="false" onAction="#orderManageClicked" prefHeight="43.0" prefWidth="164.0" text="ORDER">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
-      <Button layoutX="25.0" layoutY="218.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="164.0" text="THANH TOÁN">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
-      <Button layoutX="25.0" layoutY="277.0" mnemonicParsing="false" onAction="#TableManage" prefHeight="43.0" prefWidth="164.0" text="QUẢN LÍ BÀN">
+      <Button layoutX="25.0" layoutY="262.0" mnemonicParsing="false" onAction="#TableManage" prefHeight="43.0" prefWidth="164.0" text="QUẢN LÍ BÀN">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="25.0" layoutY="334.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="164.0" text="KHO NGUYÊN LIỆU">
+      <Button layoutX="25.0" layoutY="324.0" mnemonicParsing="false" onAction="#storageManageClicked" prefHeight="43.0" prefWidth="164.0" text="KHO NGUYÊN LIỆU">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="25.0" layoutY="394.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="164.0" text="THỐNG KÊ DOANH THU">
+      <Button layoutX="25.0" layoutY="384.0" mnemonicParsing="false" onAction="#revenueButtonClicked" prefHeight="43.0" prefWidth="164.0" text="THỐNG KÊ DOANH THU">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <TextArea fx:id="observablTextArea" editable="false" layoutX="223.0" layoutY="68.0" prefHeight="387.0" prefWidth="526.0" />
+      <TextArea fx:id="observablTextArea" layoutX="223.0" layoutY="68.0" prefHeight="362.0" prefWidth="526.0" wrapText="true" />
+      <Label fx:id="lastRevenue">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
       <Label layoutX="397.0" layoutY="4.0" text="MY COFFEE">
          <font>
             <Font name="Bell MT Bold" size="27.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="menuPane" layoutX="223.0" layoutY="44.0" prefHeight="410.0" prefWidth="587.0">
+      <AnchorPane fx:id="menuPane" layoutX="223.0" layoutY="44.0" prefHeight="411.0" prefWidth="587.0">
          <children>
             <TextField fx:id="DishesText" layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="130.0" />
             <TextField fx:id="numberofPiece" layoutX="153.0" layoutY="23.0" prefHeight="26.0" prefWidth="50.0" />
-            <Label fx:id="number" layoutX="167.0" layoutY="5.0" text="Số lượng:" />
+            <Label fx:id="number" layoutX="153.0" layoutY="5.0" text="Số lượng:" />
             <Label fx:id="dishes" layoutX="57.0" layoutY="5.0" text="Món:" />
             <ListView fx:id="menuView" layoutX="14.0" layoutY="58.0" prefHeight="335.0" prefWidth="244.0" />
             <TextArea fx:id="BillArea" editable="false" layoutX="270.0" layoutY="58.0" prefHeight="278.0" prefWidth="306.0" />
             <Label fx:id="bill" layoutX="400.0" layoutY="27.0" text="Hóa đơn" />
-            <Button fx:id="orderedButton" layoutX="396.0" layoutY="380.0" mnemonicParsing="false" text="ORDER" />
+            <Button fx:id="orderedButton" layoutX="396.0" layoutY="380.0" mnemonicParsing="false" onAction="#orderedButtonClicked" text="ORDER" />
             <Button fx:id="addButton" layoutX="208.0" layoutY="24.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="26.0" prefWidth="46.0" text="ADD" />
             <Button fx:id="table1" layoutX="79.0" layoutY="58.0" mnemonicParsing="false" text="FREE" />
             <Button fx:id="table4" layoutX="79.0" layoutY="152.0" mnemonicParsing="false" text="FREE" />
@@ -85,5 +86,6 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="modifyButton" layoutX="477.0" layoutY="455.0" mnemonicParsing="false" onAction="#change" text="Chỉnh sửa" />
    </children>
 </AnchorPane>

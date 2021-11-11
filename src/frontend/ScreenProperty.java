@@ -1,10 +1,15 @@
 package frontend;
 
+import backend.EmployeeManagement;
 import backend.MenuManagement;
+import backend.Ordered;
+import backend.RevenueManagement;
+import backend.Storage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import ManageSources.Fare;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,8 +19,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import ManageSources.Fare;
-import ManageSources.Menu;
 
 public class ScreenProperty implements Initializable {
   @FXML
@@ -71,8 +74,9 @@ public class ScreenProperty implements Initializable {
   @FXML
   public Button[] tableAvail = new Button[13];
   @FXML
-  public static Menu menu;
+  Label lastRevenue;
   @FXML
+  Button modifyButton;
   public static List<String> menuList = new ArrayList<>();
 
 
@@ -103,44 +107,56 @@ public class ScreenProperty implements Initializable {
 
     menuPane.setVisible(false);
     observablTextArea.setVisible(false);
+    modifyButton.setVisible(false);
     MenuManagement.insertFood(); // Tạo menu
   }
 
   public void staffManageClicked() {
     observablTextArea.setVisible(true);
     menuPane.setVisible(false);
+    observablTextArea.setText(EmployeeManagement.Employee());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
   }
 
   /**
    * Quản lí bàn ăn.
    */
   public void TableManage() {
+    lastRevenue.setVisible(false);
     menuPane.setVisible(true);
     for (int i = 1; i <= 12; i++) {
       tableAvail[i].setVisible(true);
       int set = i;
       tableAvail[i].setOnAction(e -> {
-        tableAvail[set].setText("Occupied");
-        bill.setText("Hóa đơn bàn" + Integer.toString(set));
-        menuView.getItems().addAll(MenuManagement.getStringList());
-        menuView.getSelectionModel().selectedItemProperty()
-            .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
-                .setText(menuView.getSelectionModel().getSelectedItem()));
-        DishesText.setVisible(true);
-        numberofPiece.setVisible(true);
-        addButton.setVisible(true);
-        orderedButton.setVisible(true);
-        BillArea.setVisible(true);
-        menuView.setVisible(true);
-        observablTextArea.setVisible(false);
-        bill.setVisible(true);
-        dishes.setVisible(true);
-        number.setVisible(true);
-        sumLabel.setVisible(true);
-        Sumtext.setVisible(true);
+        if (tableAvail[set].getText().equals("FREE")) {
+          tableAvail[set].setText("Occupied");
+          bill.setText("Hóa đơn bàn  " + Integer.toString(set));
+          menuView.getItems().addAll(MenuManagement.getStringList());
+          menuView.getSelectionModel().selectedItemProperty()
+              .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
+                  .setText(menuView.getSelectionModel().getSelectedItem()));
+          DishesText.setVisible(true);
+          numberofPiece.setVisible(true);
+          addButton.setVisible(true);
+          orderedButton.setVisible(true);
+          BillArea.setVisible(true);
+          menuView.setVisible(true);
+          observablTextArea.setVisible(false);
+          bill.setVisible(true);
+          dishes.setVisible(true);
+          number.setVisible(true);
+          sumLabel.setVisible(true);
+          Sumtext.setVisible(true);
+          BillArea.setText("");
+          sumLabel.setText("0");
+          orderedFare.clear();
 
-        for (int j = 1; j <= 12; j++) {
-          tableAvail[j].setVisible(false);
+          for (int j = 1; j <= 12; j++) {
+            tableAvail[j].setVisible(false);
+          }
+        } else {
+          tableAvail[set].setText("FREE");
         }
       });
     }
@@ -156,6 +172,7 @@ public class ScreenProperty implements Initializable {
     number.setVisible(false);
     Sumtext.setVisible(false);
     sumLabel.setVisible(false);
+    modifyButton.setVisible(false);
   }
 
   /**
@@ -185,5 +202,64 @@ public class ScreenProperty implements Initializable {
 
     sumLabel.setText(String.valueOf(revenue));
     BillArea.setText(bills);
+  }
+
+  public void orderedButtonClicked() {
+    RevenueManagement.insertToRevenue(String.valueOf(revenue));
+    Ordered.orderedManagement(bill.getText() + "\n" + BillArea.getText() + "\n");
+    observablTextArea.setVisible(true);
+    observablTextArea.setText(Ordered.Ordered());
+    menuPane.setVisible(false);
+  }
+
+  public void revenueButtonClicked() {
+    menuPane.setVisible(false);
+    observablTextArea.setVisible(false);
+    lastRevenue.setText("Tổng doanh thu trong ngày: " + RevenueManagement.countingLastRevenue());
+    lastRevenue.setTranslateX(300);
+    lastRevenue.setTranslateY(150);
+    lastRevenue.setVisible(true);
+
+  }
+
+  public void storageManageClicked() {
+    observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
+    observablTextArea.setText(Storage.StorageList());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
+  }
+
+  public void menuManageClicked() {
+    observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
+    observablTextArea.setText(MenuManagement.menuList());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
+  }
+
+  public void orderManageClicked() {
+    observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
+    observablTextArea.setText(Ordered.Ordered());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
+  }
+
+
+  public void change() {
+    if (observablTextArea.getText().contains("Employee")) {
+      EmployeeManagement.staffManagement(observablTextArea.getText());
+    }
+    if (observablTextArea.getText().contains("Storage")) {
+      Storage.storageManagement(observablTextArea.getText());
+    }
+    if (observablTextArea.getText().contains("Menu")) {
+      MenuManagement.menuManage(observablTextArea.getText());
+    }
+    if (observablTextArea.getText().contains("Order")) {
+      Ordered.orderManagement(observablTextArea.getText());
+    }
+
   }
 }

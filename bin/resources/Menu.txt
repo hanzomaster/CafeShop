@@ -1,3 +1,4 @@
+Menu
 Tên	Giá(vnd)	Loại
 Capuchino	30000	Cà phê
 Đen đá	15000	Cà phê
