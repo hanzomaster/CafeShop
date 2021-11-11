@@ -139,15 +139,6 @@ public class ScreenProperty implements Initializable {
             bills = bills + tmp.toString();
             Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
           }
-        } else if (numberOfFood == "0") {
-          for (Fare tmp : orderedFare) {
-            if (tmp.getName().equals(food)) {
-              orderedFare.remove(tmp);
-            } else {
-              bills = bills + tmp.toString();
-              Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
-            }
-          }
         }
       }
     }

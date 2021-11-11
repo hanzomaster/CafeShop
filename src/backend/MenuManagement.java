@@ -35,7 +35,6 @@ public class MenuManagement {
                         int price = Integer.parseInt(priceString);
                         String type = line.substring(i + 7, line.length());
                         Fare fare = new Fare(foodName, price, type);
-                        System.out.println(foodName + price + type);
                         menu.addNewMenu(fare);
                         menuList.add(foodName);
                         break;
