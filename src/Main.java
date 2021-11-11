@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+
   /**
    * Click Run to run the application.
    */
@@ -19,7 +21,7 @@ public class Main extends Application {
    * Start Application.
    */
   public void start(Stage primaryStage) {
-    primaryStage.setTitle("Dictionary");
+    primaryStage.setTitle("CafeShop");
     primaryStage.setResizable(false);
     try {
       Parent root = FXMLLoader

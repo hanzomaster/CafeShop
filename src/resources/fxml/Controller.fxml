@@ -57,10 +57,10 @@
             <Label fx:id="number" layoutX="167.0" layoutY="5.0" text="Số lượng:" />
             <Label fx:id="dishes" layoutX="57.0" layoutY="5.0" text="Món:" />
             <ListView fx:id="menuView" layoutX="14.0" layoutY="58.0" prefHeight="335.0" prefWidth="244.0" />
-            <TextArea fx:id="BillArea" editable="false" layoutX="270.0" layoutY="58.0" prefHeight="302.0" prefWidth="306.0" />
+            <TextArea fx:id="BillArea" editable="false" layoutX="270.0" layoutY="58.0" prefHeight="278.0" prefWidth="306.0" />
             <Label fx:id="bill" layoutX="400.0" layoutY="27.0" text="Hóa đơn" />
-            <Button fx:id="orderedButton" layoutX="338.0" layoutY="381.0" mnemonicParsing="false" text="ORDER" />
-            <Button fx:id="addButton" layoutX="208.0" layoutY="24.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" text="ADD" />
+            <Button fx:id="orderedButton" layoutX="396.0" layoutY="380.0" mnemonicParsing="false" text="ORDER" />
+            <Button fx:id="addButton" layoutX="208.0" layoutY="24.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="26.0" prefWidth="46.0" text="ADD" />
             <Button fx:id="table1" layoutX="79.0" layoutY="58.0" mnemonicParsing="false" text="FREE" />
             <Button fx:id="table4" layoutX="79.0" layoutY="152.0" mnemonicParsing="false" text="FREE" />
             <Button fx:id="table7" layoutX="79.0" layoutY="256.0" mnemonicParsing="false" text="FREE" />
@@ -73,6 +73,16 @@
             <Button fx:id="table10" layoutX="79.0" layoutY="334.0" mnemonicParsing="false" text="FREE" />
             <Button fx:id="table11" layoutX="255.0" layoutY="334.0" mnemonicParsing="false" text="FREE" />
             <Button fx:id="table12" layoutX="434.0" layoutY="334.0" mnemonicParsing="false" text="FREE" />
+            <Label fx:id="Sumtext" layoutX="297.0" layoutY="346.0" text="Tổng số tiền:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="sumLabel" layoutX="425.0" layoutY="346.0" text="0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

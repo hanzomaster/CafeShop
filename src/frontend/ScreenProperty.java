@@ -1,8 +1,14 @@
 package frontend;
 
 
+import backend.MenuManagement;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import ManageSources.Fare;
+import ManageSources.Menu;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,11 +23,13 @@ public class ScreenProperty implements Initializable {
   public TextArea observablTextArea;
   public TextField DishesText;
   public TextField numberofPiece;
-  public ListView menuView;
+  public ListView<String> menuView;
   public TextArea BillArea;
   public Label dishes;
   public Label number;
   public Label bill;
+  public Label Sumtext;
+  public Label sumLabel;
   public Button table1;
   public Button table2;
   public Button table3;
@@ -37,6 +45,10 @@ public class ScreenProperty implements Initializable {
   public Button addButton;
   public Button orderedButton;
   public Button tableAvail[] = new Button[13];
+  public static Menu menu;
+  public static List<String> menuList = new ArrayList<>();
+  private int Revenue = 0;
+  private List<Fare> orderedFare = new ArrayList<>();
 
 
   @Override
@@ -61,10 +73,14 @@ public class ScreenProperty implements Initializable {
 
     menuPane.setVisible(false);
     observablTextArea.setVisible(false);
+    MenuManagement.insertFood();
+
+
   }
 
   public void staffManageClicked() {
     observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
   }
 
   public void TableManage() {
@@ -74,6 +90,26 @@ public class ScreenProperty implements Initializable {
       int set = i;
       tableAvail[i].setOnAction(e -> {
         tableAvail[set].setText("Occupied");
+        menuView.getItems().addAll(MenuManagement.getStringList());
+        menuView.getSelectionModel().selectedItemProperty()
+            .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
+                .setText(menuView.getSelectionModel().getSelectedItem()));
+        DishesText.setVisible(true);
+        numberofPiece.setVisible(true);
+        addButton.setVisible(true);
+        orderedButton.setVisible(true);
+        BillArea.setVisible(true);
+        menuView.setVisible(true);
+        observablTextArea.setVisible(false);
+        bill.setVisible(true);
+        dishes.setVisible(true);
+        number.setVisible(true);
+        sumLabel.setVisible(true);
+        Sumtext.setVisible(true);
+
+        for (int j = 1; j <= 12; j++) {
+          tableAvail[j].setVisible(false);
+        }
       });
     }
     DishesText.setVisible(false);
@@ -86,6 +122,37 @@ public class ScreenProperty implements Initializable {
     bill.setVisible(false);
     dishes.setVisible(false);
     number.setVisible(false);
+    Sumtext.setVisible(false);
+    sumLabel.setVisible(false);
   }
 
+  public void addButtonClicked() {
+    String bills = BillArea.getText();
+    String food = DishesText.getText();
+    String numberOfFood = numberofPiece.getText();
+    if (food != "" && numberOfFood != "" && numberOfFood != "0") {
+      for (Fare f : MenuManagement.getFareList()) {
+        if (f.getName().equals(food) && (numberOfFood != "0")) {
+          f.setNumber(numberOfFood);
+          orderedFare.add(f);
+          for (Fare tmp : orderedFare) {
+            bills = bills + tmp.toString();
+            Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
+          }
+        } else if (numberOfFood == "0") {
+          for (Fare tmp : orderedFare) {
+            if (tmp.getName().equals(food)) {
+              orderedFare.remove(tmp);
+            } else {
+              bills = bills + tmp.toString();
+              Revenue = Revenue + tmp.getNumber() * tmp.getPrice();
+            }
+          }
+        }
+      }
+    }
+    sumLabel.setText(String.valueOf(Revenue));
+    BillArea.setText(bills);
+  }
 }
+
