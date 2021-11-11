@@ -1,5 +1,3 @@
-
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -8,17 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
-
   /**
-   * Click Run to run the application.
+   * Nhấn run để chạy chương trình.
    */
   public static void main(String[] args) {
     launch(args);
   }
 
   /**
-   * Start Application.
+   * Hàm khởi động.
    */
   public void start(Stage primaryStage) {
     primaryStage.setTitle("CafeShop");

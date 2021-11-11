@@ -9,10 +9,10 @@ import java.io.InputStreamReader;
 
 public class RevenueManagement {
 
-  private static String url = "src\\resources\\revenu.txt";
+  private static String url = "src\\resources\\Revenue.txt";
 
   public static void insertToRevenue(String word) {
-    /* Write word to file. */
+    // Write word to file.
     try (FileWriter fileWriter = new FileWriter(url, true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
       bufferedWriter.write(word);

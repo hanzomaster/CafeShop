@@ -12,20 +12,19 @@ public class EmployeeManagement {
   private static String url = "src\\resources\\Employee.txt";
 
   public static String Employee() {
-    String Staff = "";
+    String staff = "";
     try (FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(fileInputStream))) {
       String line = bufferedReader.readLine();
       while (line != null) {
-        final String similarString = line;
-        Staff = Staff + line + "\n";
+        staff += line + "\n";
         line = bufferedReader.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return Staff;
+    return staff;
   }
 
   public static void staffManagement(String word) {

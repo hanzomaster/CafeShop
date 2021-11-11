@@ -1,5 +1,5 @@
 Storage
-Loại			Khối lượng(kg)
+Loại			  Khối lượng(kg)
 Hạt Robusta	5kg
 Hạt Arabica	10kg
 Hạt Culi		7kg

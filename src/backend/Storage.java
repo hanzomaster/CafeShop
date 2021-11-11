@@ -10,25 +10,30 @@ import java.io.InputStreamReader;
 public class Storage {
   private static String url = "src\\resources\\Storage.txt";
 
+  /**
+   * Đọc file Storage.txt và trả về danh sách hàng trong kho.
+   */
   public static String StorageList() {
-    String Storage = "";
+    String storage = "";
     try (FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(fileInputStream))) {
       String line = bufferedReader.readLine();
       while (line != null) {
-        final String similarString = line;
-        Storage = Storage + line + "\n";
+        storage += line + "\n";
         line = bufferedReader.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return Storage;
+    return storage;
   }
 
+  /**
+   * Thêm khả năng chỉnh sửa storage trong app.
+   */
   public static void storageManagement(String word) {
-    /* Write word to file. */
+    // Write word to file.
     try (FileWriter fileWriter = new FileWriter(url, false);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
       bufferedWriter.write(word);

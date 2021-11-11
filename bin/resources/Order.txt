@@ -1,17 +1,1 @@
 Order
-
-Hóa đơn bàn  4
-Trà sữa đào	10000	Tráng miệng		1
-Trà đào	10000	Đồ uống		1
-Sinh tố bơ	15000	Sinh tố		1
-
-
-
-Hóa đơn bàn  5
-Sinh tố bơ	15000	Sinh tố		1
-Trà đào	10000	Đồ uống		1
-Trà sữa dâu	10000	Tráng miệng		1
-Trà đào	10000	Đồ uống		1
-
-
-

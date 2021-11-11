@@ -15,7 +15,7 @@ public class MenuManagement {
 
   private static Menu menu = new Menu();
   private static List<String> menuList = new ArrayList<>();
-  private static String url = "src\\resources\\menu.txt";
+  private static String url = "src\\resources\\Menu.txt";
 
   /**
    * Tạo menu đồ ăn từ file txt.
@@ -64,23 +64,28 @@ public class MenuManagement {
     return menu.getList();
   }
 
+  /**
+   * Hiện menu lên app.
+   */
   public static String menuList() {
-    String Menu = "";
+    String menu = "";
     try (FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(fileInputStream))) {
       String line = bufferedReader.readLine();
       while (line != null) {
-        final String similarString = line;
-        Menu = Menu + line + "\n";
+        menu += line + "\n";
         line = bufferedReader.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return Menu;
+    return menu;
   }
 
+  /**
+   * Thêm khả năng chỉnh sửa menu vào app.
+   */
   public static void menuManage(String word) {
     /* Write word to file. */
     try (FileWriter fileWriter = new FileWriter(url, false);

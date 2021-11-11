@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import ManageSources.Fare;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import ManageSources.Fare;
 
 public class ScreenProperty implements Initializable {
   @FXML
@@ -111,6 +111,9 @@ public class ScreenProperty implements Initializable {
     MenuManagement.insertFood(); // Tạo menu
   }
 
+  /**
+   * Hiện thị tất cả nhân viên.
+   */
   public void staffManageClicked() {
     observablTextArea.setVisible(true);
     menuPane.setVisible(false);
@@ -131,7 +134,7 @@ public class ScreenProperty implements Initializable {
       tableAvail[i].setOnAction(e -> {
         if (tableAvail[set].getText().equals("FREE")) {
           tableAvail[set].setText("Occupied");
-          bill.setText("Hóa đơn bàn  " + Integer.toString(set));
+          bill.setText("Hóa đơn bàn " + Integer.toString(set));
           menuView.getItems().addAll(MenuManagement.getStringList());
           menuView.getSelectionModel().selectedItemProperty()
               .addListener((ChangeListener<String>) (arg0, arg1, arg2) -> DishesText
@@ -196,7 +199,7 @@ public class ScreenProperty implements Initializable {
       }
     }
     for (Fare tmp : orderedFare) {
-      bills = bills + tmp.toString();
+      bills += tmp.toString();
       revenue = revenue + tmp.getNumber() * tmp.getPrice();
     }
 
@@ -204,38 +207,15 @@ public class ScreenProperty implements Initializable {
     BillArea.setText(bills);
   }
 
+  /**
+   * Order đồ ăn.
+   */
   public void orderedButtonClicked() {
     RevenueManagement.insertToRevenue(String.valueOf(revenue));
-    Ordered.orderedManagement(bill.getText() + "\n" + BillArea.getText() + "\n");
+    Ordered.orderedManagement(bill.getText() + "\n" + BillArea.getText() + "\n\n");
     observablTextArea.setVisible(true);
     observablTextArea.setText(Ordered.Ordered());
     menuPane.setVisible(false);
-  }
-
-  public void revenueButtonClicked() {
-    menuPane.setVisible(false);
-    observablTextArea.setVisible(false);
-    lastRevenue.setText("Tổng doanh thu trong ngày: " + RevenueManagement.countingLastRevenue());
-    lastRevenue.setTranslateX(300);
-    lastRevenue.setTranslateY(150);
-    lastRevenue.setVisible(true);
-
-  }
-
-  public void storageManageClicked() {
-    observablTextArea.setVisible(true);
-    menuPane.setVisible(false);
-    observablTextArea.setText(Storage.StorageList());
-    modifyButton.setVisible(true);
-    lastRevenue.setVisible(false);
-  }
-
-  public void menuManageClicked() {
-    observablTextArea.setVisible(true);
-    menuPane.setVisible(false);
-    observablTextArea.setText(MenuManagement.menuList());
-    modifyButton.setVisible(true);
-    lastRevenue.setVisible(false);
   }
 
   public void orderManageClicked() {
@@ -246,6 +226,40 @@ public class ScreenProperty implements Initializable {
     lastRevenue.setVisible(false);
   }
 
+  /**
+   * Hiển thị doanh thu.
+   */
+  public void revenueButtonClicked() {
+    menuPane.setVisible(false);
+    observablTextArea.setVisible(false);
+    lastRevenue.setText("Tổng doanh thu trong ngày: " + RevenueManagement.countingLastRevenue());
+    lastRevenue.setTranslateX(300);
+    lastRevenue.setTranslateY(150);
+    lastRevenue.setVisible(true);
+
+  }
+
+  /**
+   * Hiển thị nguyên liệu còn lại trong kho.
+   */
+  public void storageManageClicked() {
+    observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
+    observablTextArea.setText(Storage.StorageList());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
+  }
+
+  /**
+   * Hiển thị menu.
+   */
+  public void menuManageClicked() {
+    observablTextArea.setVisible(true);
+    menuPane.setVisible(false);
+    observablTextArea.setText(MenuManagement.menuList());
+    modifyButton.setVisible(true);
+    lastRevenue.setVisible(false);
+  }
 
   public void change() {
     if (observablTextArea.getText().contains("Employee")) {

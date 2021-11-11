@@ -12,20 +12,19 @@ public class Ordered {
   private static String url = "src\\resources\\Order.txt";
 
   public static String Ordered() {
-    String orderedString = "";
+    String orderedList = "";
     try (FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(fileInputStream))) {
       String line = bufferedReader.readLine();
       while (line != null) {
-        final String similarString = line;
-        orderedString = orderedString + line + "\n";
+        orderedList += line + "\n";
         line = bufferedReader.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return orderedString;
+    return orderedList;
   }
 
   public static void orderManagement(String word) {
