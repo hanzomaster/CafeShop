@@ -1,18 +1,19 @@
-## Getting Started
+# Phần mềm quản lí quán cafe
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Cách cài đặt
 
-## Folder Structure
+* Cài đặt JDK16 [tại đây](https://www.oracle.com/java/technologies/downloads/#java16-windows) (theo hướng dẫn [video](https://www.youtube.com/watch?v=kIYfCvzZngw) này, hoặc [đây](https://youtu.be/KwnavHTOBiA?t=28))
+* Cài đặt [VScode](https://code.visualstudio.com/download) và tải **Bộ extension cho Java** theo [hướng dẫn](https://code.visualstudio.com/docs/languages/java) ([video](https://youtu.be/KwnavHTOBiA?t=189))
 
-The workspace contains two folders by default, where:
+## Cách chạy chương trình
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+* Mở find **Main.java** trong thư mục **src** trên VSCode và nhấn nút Run tại hàm main để chạy chương trình
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Các chức năng
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+* Hiện danh sách nhân viên hiện tại
+* Hiện menu đồ uống
+* Hiện lịch sử order
+* Hiện tình trạng từng bàn và chức năng đặt đồ ăn khi nhâns vào bàn trống
+* Hiện kho
+* Thống kê tổng doanh thu trong ngày dựa vào lịch sử order
